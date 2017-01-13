@@ -1,4 +1,4 @@
-package com.cxp.jokes.base;
+package com.cxp.jokes.view;
 
 import android.app.Activity;
 import android.os.Bundle;

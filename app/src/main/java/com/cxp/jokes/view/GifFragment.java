@@ -1,15 +1,14 @@
-package com.cxp.jokes.fragment;
+package com.cxp.jokes.view;
 
 import android.view.View;
 
 import com.cxp.jokes.R;
-import com.cxp.jokes.base.BaseFragment;
 
 /**
  * Created by cxp on 17-1-13.
  */
 
-public class PicFragment extends BaseFragment {
+public class GifFragment extends BaseFragment {
     @Override
     public void initData() {
 

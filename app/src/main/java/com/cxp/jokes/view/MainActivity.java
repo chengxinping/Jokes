@@ -1,4 +1,4 @@
-package com.cxp.jokes;
+package com.cxp.jokes.view;
 
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -12,9 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.cxp.jokes.fragment.GifFragment;
-import com.cxp.jokes.fragment.PicFragment;
-import com.cxp.jokes.fragment.TxtFragment;
+import com.cxp.jokes.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
