@@ -2,20 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="horizontal"
+    android:padding="8dp">
 
-    <TextView
-        android:id="@+id/jokes_txt_title"
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/laugh" />
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="测试"
-        android:textColor="#000"
-        android:textSize="16sp" />
+        android:orientation="vertical"
+        android:paddingLeft="8dp">
 
-    <TextView
-        android:id="@+id/jokes_txt_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        android:textColor="#001" />
+        <TextView
+            android:id="@+id/jokes_txt_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="这是一个标题"
+            android:textColor="#000000"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/jokes_txt_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="2017-01-14 09:03"
+            android:textColor="#3B3B3B"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/jokes_txt_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lines="2"
+            android:text="  这是一个笑话，哈哈哈哈呵呵哈哈哈或呵呵哈哈哈哈哈哈哈哈哈哈好好笑"
+            android:textColor="#242424"
+            android:textSize="14sp" />
+    </LinearLayout>
 </LinearLayout>
