@@ -25,9 +25,9 @@ public class TxtJokesPresenter {
         this.mBaseView = mBaseView;
     }
 
-    public void getData(String timestamp, int page) {
+    public void getData(String timestamp, int maxResult) {
         mRequestApi = RetrofitComentUtil.creatService(RequestApi.class);
-        call = mRequestApi.getTxtJokesModel(20, page, "30739", "f56b6bc927eb41bf98b7e3a5c9630817", timestamp, "2015-07-10");
+        call = mRequestApi.getTxtJokesModel(maxResult, 1, "30739", "f56b6bc927eb41bf98b7e3a5c9630817", timestamp, "2015-07-10");
         call.enqueue(new Callback<TxtJokesModel>() {
             private TxtJokesModel mModel;
 

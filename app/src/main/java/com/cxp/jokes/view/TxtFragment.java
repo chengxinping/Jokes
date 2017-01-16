@@ -1,15 +1,18 @@
 package com.cxp.jokes.view;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.cxp.jokes.R;
 import com.cxp.jokes.model.TxtJokesModel;
 import com.cxp.jokes.presenter.TxtJokesPresenter;
+import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -23,9 +26,10 @@ import java.util.List;
  */
 
 public class TxtFragment extends BaseFragment implements BaseView {
-    private int page;
+    private int maxResult;
     private String timestamp;
     private XRecyclerView mRecyclerView;
+    private ProgressBar mProgressBar;
     private List<TxtJokesModel.ShowapiResBodyBean.ContentlistBean> mList;
 
     @Override
@@ -33,27 +37,39 @@ public class TxtFragment extends BaseFragment implements BaseView {
         Date currentTime = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
         timestamp = formatter.format(currentTime);
-        initPresenter();
+        mRecyclerView.setVisibility(View.GONE);
+        mProgressBar.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                initPresenter();
+                mRecyclerView.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
+            }
+        }, 800);
     }
 
     @Override
     public View initView() {
         View view = View.inflate(mActivity, R.layout.fragment_content, null);
+        mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         mRecyclerView = (XRecyclerView) view.findViewById(R.id.content_recycler_view);
         Log.d("TAG", "success: " + mList);
         return view;
     }
 
     private void initPresenter() {
-        page = 1;
+        maxResult = 10;
         TxtJokesPresenter presenter = new TxtJokesPresenter(this);
-        presenter.getData(timestamp, page);
+        presenter.getData(timestamp, maxResult);
     }
 
     @Override
     public void success(Object object) {
         mList = ((TxtJokesModel) object).getShowapi_res_body().getContentlist();
         mRecyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
+        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.SquareSpin);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         mRecyclerView.setAdapter(new CommonAdapter<TxtJokesModel.ShowapiResBodyBean.ContentlistBean>(mActivity, R.layout.item_txt_jokes, mList) {
 
@@ -82,19 +98,30 @@ public class TxtFragment extends BaseFragment implements BaseView {
         mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
             @Override
             public void onRefresh() {
-                initPresenter();
-                mRecyclerView.refreshComplete();
+                new Handler().postDelayed(new Runnable() {
+
+                    @Override
+                    public void run() {
+                        initPresenter();
+                        mRecyclerView.refreshComplete();
+                    }
+                }, 800);
             }
 
             @Override
             public void onLoadMore() {
-                TxtJokesPresenter presenter = new TxtJokesPresenter(TxtFragment.this);
-                page = page + 1;
-                presenter.getData(timestamp, page);
-                mRecyclerView.getAdapter().notifyDataSetChanged();
-                mRecyclerView.loadMoreComplete();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        TxtJokesPresenter presenter = new TxtJokesPresenter(TxtFragment.this);
+                        maxResult = maxResult + 10;
+                        presenter.getData(timestamp, maxResult);
+                        mRecyclerView.loadMoreComplete();
+                    }
+                }, 800);
             }
         });
+        mRecyclerView.scrollToPosition(maxResult - 10);
     }
 
     @Override
