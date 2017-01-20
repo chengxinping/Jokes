@@ -54,7 +54,6 @@ public class TxtFragment extends BaseFragment implements BaseView {
         View view = View.inflate(mActivity, R.layout.fragment_content, null);
         mProgressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         mRecyclerView = (XRecyclerView) view.findViewById(R.id.content_recycler_view);
-        Log.d("TAG", "success: " + mList);
         return view;
     }
 
@@ -99,7 +98,6 @@ public class TxtFragment extends BaseFragment implements BaseView {
             @Override
             public void onRefresh() {
                 new Handler().postDelayed(new Runnable() {
-
                     @Override
                     public void run() {
                         initPresenter();

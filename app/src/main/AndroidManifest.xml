@@ -22,6 +22,9 @@
         </activity>
         <activity
             android:name=".view.TxtJokesActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.PicJokesActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
