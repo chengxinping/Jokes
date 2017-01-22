@@ -1,5 +1,6 @@
 package com.cxp.jokes.network;
 
+import com.cxp.jokes.model.GifJokesModel;
 import com.cxp.jokes.model.PicJokesModel;
 import com.cxp.jokes.model.TxtJokesModel;
 
@@ -17,4 +18,7 @@ public interface RequestApi {
 
     @GET("341-2")
     Call<PicJokesModel> getPicJokesModel(@Query("maxResult") int maxResult, @Query("page") int page, @Query("showapi_appid") String showapi_appid, @Query("showapi_sign") String showapi_sign, @Query("showapi_timestamp") String showapi_timestamp, @Query("time") String time);
+
+    @GET("341-3")
+    Call<GifJokesModel> getGifJokesModel(@Query("maxResult") int maxResult, @Query("page") int page, @Query("showapi_appid") String showapi_appid, @Query("showapi_sign") String showapi_sign, @Query("showapi_timestamp") String showapi_timestamp, @Query("time") String time);
 }

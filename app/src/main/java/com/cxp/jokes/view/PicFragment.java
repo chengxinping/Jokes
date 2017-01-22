@@ -84,7 +84,7 @@ public class PicFragment extends BaseFragment implements BaseView {
                         .dontAnimate()
                         .priority(Priority.priority.HIGH)
                         .skipMemoryCache(true)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                         .placeholder(R.drawable.loading_12)
                         .into((ImageView) holder.getView(R.id.jokes_pic_img));
                 holder.setText(R.id.jokes_pic_title, contentlistBean.getTitle());
@@ -96,10 +96,8 @@ public class PicFragment extends BaseFragment implements BaseView {
                 holder.itemView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(mActivity, PicJokesActivity.class);
-                        intent.putExtra("title", mList.get(position).getTitle());
+                        Intent intent = new Intent(mActivity, DetailJokesActivity.class);
                         intent.putExtra("img", mList.get(position).getImg());
-                        intent.putExtra("time", mList.get(position).getCt());
                         startActivity(intent);
                     }
                 });

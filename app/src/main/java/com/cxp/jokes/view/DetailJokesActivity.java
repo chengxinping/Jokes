@@ -8,14 +8,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.Priority;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.cxp.jokes.R;
 
-public class PicJokesActivity extends AppCompatActivity {
+public class DetailJokesActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,23 +32,16 @@ public class PicJokesActivity extends AppCompatActivity {
             window.setNavigationBarColor(Color.TRANSPARENT);
         }
 
-        setContentView(R.layout.activity_pic_jokes);
-        String title = getIntent().getStringExtra("title");
+        setContentView(R.layout.activity_detail_jokes);
         String img = getIntent().getStringExtra("img");
-        String time = getIntent().getStringExtra("time");
-        TextView mTitle = (TextView) findViewById(R.id.activity_pic_text);
-        TextView mTime = (TextView) findViewById(R.id.activity_pic_time);
         ImageView mImg = (ImageView) findViewById(R.id.activity_pic_jokes);
         Glide.with(getApplicationContext())
                 .load(img)
-                .centerCrop()
                 .dontAnimate()
                 .priority(Priority.priority.HIGH)
                 .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .diskCacheStrategy(DiskCacheStrategy.SOURCE)
                 .placeholder(R.drawable.loading_12)
                 .into(mImg);
-        mTitle.setText(title);
-        mTime.setText(time);
     }
 }
