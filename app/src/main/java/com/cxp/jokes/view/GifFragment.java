@@ -130,6 +130,7 @@ public class GifFragment extends BaseFragment implements BaseView {
             }
         });
         mRecyclerView.scrollToPosition(maxResult - 10);
+        ((MainActivity) mActivity).upToTop(mRecyclerView);
     }
 
 

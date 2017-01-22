@@ -129,6 +129,7 @@ public class PicFragment extends BaseFragment implements BaseView {
             }
         });
         mRecyclerView.scrollToPosition(maxResult - 10);
+        ((MainActivity) mActivity).upToTop(mRecyclerView);
     }
 
 

@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -120,6 +119,7 @@ public class TxtFragment extends BaseFragment implements BaseView {
             }
         });
         mRecyclerView.scrollToPosition(maxResult - 10);
+        ((MainActivity) mActivity).upToTop(mRecyclerView);
     }
 
     @Override
