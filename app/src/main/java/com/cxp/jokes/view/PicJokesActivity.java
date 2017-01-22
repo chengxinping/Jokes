@@ -43,10 +43,11 @@ public class PicJokesActivity extends AppCompatActivity {
         Glide.with(getApplicationContext())
                 .load(img)
                 .centerCrop()
+                .dontAnimate()
                 .priority(Priority.priority.HIGH)
                 .skipMemoryCache(true)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(R.drawable.snow)
+                .placeholder(R.drawable.loading_12)
                 .into(mImg);
         mTitle.setText(title);
         mTime.setText(time);

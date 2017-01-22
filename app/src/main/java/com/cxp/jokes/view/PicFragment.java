@@ -81,10 +81,11 @@ public class PicFragment extends BaseFragment implements BaseView {
                 Glide.with(mActivity)
                         .load(contentlistBean.getImg())
                         .centerCrop()
+                        .dontAnimate()
                         .priority(Priority.priority.HIGH)
                         .skipMemoryCache(true)
                         .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .placeholder(R.drawable.snow)
+                        .placeholder(R.drawable.loading_12)
                         .into((ImageView) holder.getView(R.id.jokes_pic_img));
                 holder.setText(R.id.jokes_pic_title, contentlistBean.getTitle());
             }
